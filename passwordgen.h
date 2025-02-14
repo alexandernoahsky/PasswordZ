@@ -10,9 +10,12 @@ public:
     QString GetGeneratePassword();                                      // Generates and stores password
     QString GetRetrievePassword();                                      // Retrieves already stored password
     void SetPasswordLength(QString qstring);                            // Changes  password length
-    void SetDissallowedCharacters(QString qstring);                     // Exludes certain characters from being used to generate password
-    void SetDefaultCharactersAllowed(QString qstring);
-    void AllowSpecialCharacters(bool allowspecial);
+    void AllowUppercase(bool allowUppercase);
+    void AllowLowercase(bool allowLowercase);
+    void AllowNumbers(bool allowNumbers);
+    void DissallowedCharacters(QString dissallowedCharacters);
+    void AllowSymbols(bool allowSymbols);
+
 
 private:
     // Create a random number generator
@@ -26,6 +29,7 @@ private:
     QString m_defaultCharsAllowedNoSpecial = "ZXCVBNMASDFGHJKLQWERTYUIOPzxcvbnmasdfghjklqwertyuiop1234567890";
 
     bool m_allowSpecialCharacters = true;
+
 
 
 };

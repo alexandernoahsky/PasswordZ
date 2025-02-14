@@ -55,9 +55,9 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="specialCharsAllowedLabel">
+      <widget class="QLabel" name="SymbolsAllowedLabel">
        <property name="text">
-        <string>Special Characters Allowed</string>
+        <string>Symbols Allowed</string>
        </property>
       </widget>
      </item>
@@ -74,15 +74,32 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="excludeCharactersLabel">
        <property name="text">
         <string>Exclude Characters</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="3" column="1">
       <widget class="QLineEdit" name="excludeCharactersLineEditBox"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="AllowUppercaseLabel">
+       <property name="text">
+        <string>Allow Uppercase</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QCheckBox" name="allowUppercaseCheckbox">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -101,7 +118,7 @@
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>13</x>

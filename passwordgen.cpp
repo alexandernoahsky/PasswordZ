@@ -12,26 +12,8 @@ QString PasswordGen::GetGeneratePassword()
     {
 
 
-        //Remove disallowed characters from string
-        if (!m_dissallowedCharacters.isEmpty())
-        {
-            QString tempString;
-
-            for (int i = 0; i < m_defaultCharactersAllowed.length(); ++i)
-            {
-                if (!m_dissallowedCharacters.contains(m_defaultCharactersAllowed.at(i)))
-                {
-                    tempString.append(m_defaultCharactersAllowed.at(i));
-                }
-            }
-
-            m_defaultCharactersAllowed = tempString; // Update the original string
-        }
 
         std::uniform_int_distribution<> dis(0, m_defaultCharactersAllowed.length() - 1);                    //length calculated after removal
-
-
-
 
         for (int i = 0; i < m_characterLength; i++)
         {
@@ -40,38 +22,6 @@ QString PasswordGen::GetGeneratePassword()
 
         }
     }
-    else
-    {
-
-        //Remove disallowed characters from string
-        if (!m_dissallowedCharacters.isEmpty())
-        {
-            QString tempString;
-
-            for (int i = 0; i < m_defaultCharsAllowedNoSpecial.length(); ++i)
-            {
-                if (!m_dissallowedCharacters.contains(m_defaultCharsAllowedNoSpecial.at(i)))
-                {
-                    tempString.append(m_defaultCharsAllowedNoSpecial.at(i));
-                }
-            }
-
-            m_defaultCharsAllowedNoSpecial = tempString; // Update the original string
-        }
-
-
-        std::uniform_int_distribution<> dis(0, m_defaultCharsAllowedNoSpecial.length() - 1);
-
-
-
-        for (int i = 0; i < m_characterLength; i++)
-        {
-
-            m_generatedPassword.push_back(m_defaultCharsAllowedNoSpecial.at(dis(gen)));
-
-        }
-    }
-
 
     return QString(m_generatedPassword);
 }
@@ -86,17 +36,74 @@ void PasswordGen::SetPasswordLength(QString qstring)
     m_characterLength = qstring.toInt();
 }
 
-void PasswordGen::SetDissallowedCharacters(QString qstring)
+void PasswordGen::AllowUppercase(bool allowUppercase)
 {
-    m_dissallowedCharacters = qstring;
+    if (!allowUppercase)
+    {
+        QString charsToRemove = "ZXCVBNMASDFGHJKLQWERTYUIOP";
+
+        for (QChar c : charsToRemove)
+        {
+            m_defaultCharactersAllowed.remove(c);
+        }
+    }
 }
 
-void PasswordGen::SetDefaultCharactersAllowed(QString qstring)
+void PasswordGen::AllowLowercase(bool allowLowercase)
 {
-    m_defaultCharactersAllowed = qstring;
+    if (!allowLowercase)
+    {
+        QString charsToRemove = "zxcvbnmasdfghjklqwertyuiop";
+
+        for (QChar c : charsToRemove)
+        {
+            m_defaultCharactersAllowed.remove(c);
+        }
+    }
 }
 
-void PasswordGen::AllowSpecialCharacters(bool allowspecial)
+void PasswordGen::AllowNumbers(bool allowNumbers)
 {
-    m_allowSpecialCharacters = allowspecial;
+    if (!allowNumbers)
+    {
+        QString charsToRemove = "1234567890";
+
+        for (QChar c : charsToRemove)
+        {
+            m_defaultCharactersAllowed.remove(c);
+        }
+    }
 }
+
+void PasswordGen::DissallowedCharacters(QString dissallowedCharacters)
+{
+    if (!m_dissallowedCharacters.isEmpty())
+    {
+        QString tempString;
+
+        for (int i = 0; i < m_defaultCharactersAllowed.length(); ++i)
+        {
+            if (!m_dissallowedCharacters.contains(m_defaultCharactersAllowed.at(i)))
+            {
+                tempString.append(m_defaultCharactersAllowed.at(i));
+            }
+        }
+
+        m_defaultCharactersAllowed = tempString; // Update the original string
+    }
+}
+
+void PasswordGen::AllowSymbols(bool allowSymbols)
+{
+    if (!allowSymbols)
+    {
+        QString charsToRemove = "!@#$&";
+
+        for (QChar c : charsToRemove)
+        {
+            m_defaultCharactersAllowed.remove(c);
+        }
+    }
+}
+
+

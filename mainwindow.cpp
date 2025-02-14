@@ -26,11 +26,6 @@ void MainWindow::on_passLengthEdit_textEdited(const QString &arg1)
 }
 
 
-void MainWindow::on_specialCharsAllowedCheckbox_toggled(bool checked)
-{
-    m_passwordGen->AllowSpecialCharacters(checked);
-}
-
 
 void MainWindow::on_clipboardCopyButton_clicked()
 {
@@ -44,6 +39,13 @@ void MainWindow::on_clipboardCopyButton_clicked()
 
 void MainWindow::on_excludeCharactersLineEditBox_textEdited(const QString &arg1)
 {
-    m_passwordGen->SetDissallowedCharacters(ui->excludeCharactersLineEditBox->displayText());
+    m_passwordGen->DissallowedCharacters(ui->excludeCharactersLineEditBox->displayText());
+}
+
+
+
+void MainWindow::on_allowUppercaseCheckbox_toggled(bool checked)
+{
+    m_passwordGen->AllowUppercase(checked);
 }
 

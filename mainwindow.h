@@ -30,6 +30,8 @@ private slots:
 
     void on_excludeCharactersLineEditBox_textEdited(const QString &arg1);
 
+    void on_allowUppercaseCheckbox_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
 
